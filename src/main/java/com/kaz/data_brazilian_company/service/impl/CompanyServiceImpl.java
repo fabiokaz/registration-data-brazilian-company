@@ -25,9 +25,15 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company getCompanyByCnpj(String cnpj) {
         log.info("### Fetching company by cnpj: {}", cnpj);
+
+        if(findCompanyByCnpj(cnpj) == null){
+            log.info("### Company is not present in database, fetching from external API by cnpj and inserting: {}", cnpj);
+            return insertCompany(cnpj);
+        }
+
         return companyRepository.findByCnpj(formatCnpj(cnpj)).orElseGet(() ->
                 {
-                    log.info("### Company is not present in database, fetching from external API by cnpj and inserting: {}", cnpj);
+
                     return insertCompany(cnpj);
                 }
         );
@@ -66,5 +72,9 @@ public class CompanyServiceImpl implements CompanyService {
         log.info("### Company found by cnpj : {}", cnpj);
         companyRepository.save(company);
         return company;
+    }
+
+    private Company findCompanyByCnpj(String cnpj) {
+        return companyRepository.findByCnpj(formatCnpj(cnpj)).orElse(null);
     }
 }
