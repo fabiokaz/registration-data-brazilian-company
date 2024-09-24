@@ -33,6 +33,7 @@ information using the CNPJ as the main identifier.
 ### Cloning the Repository
 
 git clone https://github.com/fabiokaz/registration-data-brazilian-company.git
+
 cd registration-data-brazilian-company
 
 ### Building and Running
