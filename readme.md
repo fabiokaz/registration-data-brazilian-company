@@ -3,7 +3,7 @@
 ## About the Project
 
 This is a Spring Boot project developed to create and query registration
-data of Brazilian companies. It offers a RESTful API to manage company
+data of Brazilian companies. It offers a REST API to manage company
 information using the CNPJ as the main identifier.
 
 ## Technologies Used
